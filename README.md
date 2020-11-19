@@ -1,5 +1,5 @@
 ---
-page_type: sample
+page_type: sample-2020
 description: "A minimal sample app that can be used to demonstrate deploying Django apps to Azure App Service on Linux."
 languages:
 - python
