@@ -22,9 +22,9 @@ jobs:
     - name: Install custom env
       run: |
         cd /home
-        apt-get update
-        apt-get install g++
-        apt-get install unixodbc-dev
+        sudo apt-get update
+        sudo apt-get install g++
+        sudo apt-get install unixodbc-dev
         pip install pyodbc
 
     - name: Build using AppService-Build
