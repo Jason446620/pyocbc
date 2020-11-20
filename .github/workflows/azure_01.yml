@@ -1,0 +1,41 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy Python app to Azure Web App - pyodbcenvtest
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Set up Python version
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.8'
+
+    - name: Build using AppService-Build
+      uses: azure/appservice-build@v2
+      with:
+        platform: python
+        platform-version: '3.8'
+      
+    - name: Install custom env
+      run: |
+        apt-get update
+        apt-get install g++
+        apt-get install unixodbc-dev
+        pip install pyodbc
+        
+    - name: 'Deploy to Azure Web App'
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'pyodbcenvtest'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_90efc1d3f9c3441eba681f8ce01dbd51 }}
