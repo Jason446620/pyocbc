@@ -21,6 +21,8 @@ jobs:
         python-version: '3.8'
     - name: Install custom env
       run: |
+        #!/bin/bash
+        cd /home
         apt-get update
         apt-get install g++
         apt-get install unixodbc-dev
