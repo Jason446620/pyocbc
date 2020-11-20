@@ -19,6 +19,13 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: '3.8'
+    - name: Install custom env
+      run: |
+        cd /home
+        sudo apt-get update
+        sudo apt-get install g++
+        sudo apt-get install unixodbc-dev
+        pip install pyodbc 
 
     - name: Build using AppService-Build
       uses: azure/appservice-build@v2
